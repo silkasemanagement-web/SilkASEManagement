@@ -1,0 +1,40 @@
+{
+  "name": "ark-enterprise-discord-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-grade SILK ASE PS4/PS5 Discord management bot",
+  "type": "module",
+  "engines": {
+    "node": ">=20.10.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/bot.ts",
+    "start": "node dist/src/bot.js",
+    "start:shard": "node dist/src/shard.js",
+    "deploy:commands": "tsx scripts/deploy-commands.ts",
+    "deploy:commands:prod": "node dist/scripts/deploy-commands.js",
+    "seed:config": "tsx scripts/seed-main-guild-config.ts",
+    "lint": "eslint \"src/**/*.ts\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "bullmq": "^5.34.10",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "ioredis": "^5.4.1",
+    "mongoose": "^8.8.3",
+    "node-cron": "^3.0.3",
+    "pino": "^9.5.0",
+    "pino-pretty": "^11.3.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "eslint": "^9.16.0",
+    "typescript-eslint": "^8.18.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "@types/node-cron": "^3.0.11"
+  }
+}
