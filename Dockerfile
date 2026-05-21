@@ -10,7 +10,6 @@ COPY package.json package-lock.json* ./
 RUN npm ci || npm install
 COPY tsconfig.json ./
 COPY src ./src
-COPY scripts ./scripts
 RUN npm run build
 
 FROM node:20-bookworm-slim AS runtime
