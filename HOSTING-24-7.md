@@ -20,6 +20,28 @@ Your MongoDB is already cloud-hosted (Atlas). To use the bot while this PC is of
 3. Keep **`MONGODB_URI`** as your Atlas URL (already correct).
 4. Do **not** run the bot on two machines at once (duplicate interactions / ticket bugs).
 
+## Push source to GitHub (required for Railway)
+
+Railway builds from your Git repo. The Dockerfile needs **`src/`** and **`scripts/`** on GitHub (not only config files).
+
+From the project folder (`.env` must stay local — never commit it):
+
+```powershell
+cd "c:\Users\Trova\OneDrive\Documents\ark-enterprise-discord-bot"
+git remote add origin https://github.com/YOUR_USER/YOUR_REPO.git
+git push -u origin main
+```
+
+If GitHub already has an empty or config-only `main` branch, you may need:
+
+```powershell
+git pull origin main --allow-unrelated-histories
+# resolve conflicts if any, then:
+git push origin main
+```
+
+If a **`.env` file was ever committed on GitHub**, rotate Discord token, MongoDB password, and Redis password, delete `.env` on GitHub, and set secrets only in Railway **Variables**.
+
 ## Option A — Docker on a VPS (recommended)
 
 1. Copy this project to the VPS (git clone or zip).
