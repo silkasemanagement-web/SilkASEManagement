@@ -1,0 +1,28 @@
+# Render.com — Background Worker (bot runs 24/7 while your PC is off)
+# Dashboard: New > Blueprint > connect repo, or paste this file.
+services:
+  - type: worker
+    name: silk-manager-bot
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: DISCORD_CLIENT_ID
+        sync: false
+      - key: MAIN_GUILD_ID
+        sync: false
+      - key: DONATION_GUILD_ID
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: USE_SHARDING
+        value: "false"
+      - key: LOG_LEVEL
+        value: info

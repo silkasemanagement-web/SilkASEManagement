@@ -1,0 +1,53 @@
+{
+  "name": "ark-enterprise-discord-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-grade SILK ASE PS4/PS5 Discord management bot",
+  "type": "module",
+  "engines": {
+    "node": ">=20.10.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/bot.ts",
+    "start": "node dist/src/bot.js",
+    "start:shard": "node dist/src/shard.js",
+    "deploy:commands": "tsx scripts/deploy-commands.ts",
+    "deploy:commands:prod": "node dist/scripts/deploy-commands.js",
+    "seed:config": "tsx scripts/seed-main-guild-config.ts",
+    "layout:backup": "tsx scripts/clone-discord-layout.ts",
+    "layout:preview": "tsx scripts/clone-discord-layout.ts --preview",
+    "layout:apply:replace": "tsx scripts/clone-discord-layout.ts --apply --replace",
+    "channels:rename": "tsx scripts/rename-channel-names.ts",
+    "channels:rename:apply": "tsx scripts/rename-channel-names.ts --apply",
+    "tickets:send-panel": "tsx scripts/send-ticket-panel.ts",
+    "health": "tsx scripts/health-check.ts",
+    "deploy:full": "npm run build && npm run deploy:commands:prod",
+    "pm2:start": "pm2 start ecosystem.config.cjs --only ark-enterprise-bot",
+    "pm2:restart": "pm2 restart ark-enterprise-bot",
+    "pm2:stop": "pm2 stop ark-enterprise-bot",
+    "pm2:logs": "pm2 logs ark-enterprise-bot --lines 50",
+    "lint": "eslint \"src/**/*.ts\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "bullmq": "^5.34.10",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "ioredis": "^5.4.1",
+    "mongoose": "^8.8.3",
+    "node-cron": "^3.0.3",
+    "pino": "^9.5.0",
+    "pino-pretty": "^11.3.0",
+    "sharp": "^0.34.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/node-cron": "^3.0.11",
+    "eslint": "^9.16.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0"
+  }
+}
